@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Footer from "./components/Footer";
-import HomePage from "./components/HomePage";
+import HomePage from "./components/homePage";
 import Navbar from "./components/Navbar";
 
 function App() {
