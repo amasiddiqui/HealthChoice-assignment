@@ -83,12 +83,20 @@ const HomePage = () => {
             <div>
               <span>Welcome to HealthChoice.</span>
               <span>
-                <a style={{ textDecoration: 'none' }} href="/apply"> Apply and Enroll</a> to see eligible plans and
-                if you qualify for financial help, free or low-cost coverage.
-                You can also use our <a style={{ textDecoration: 'none' }} href="/browse">Browse and Compare</a>{" "}
+                <a style={{ textDecoration: "none" }} href="/apply">
+                  {" "}
+                  Apply and Enroll
+                </a>{" "}
+                to see eligible plans and if you qualify for financial help,
+                free or low-cost coverage. You can also use our{" "}
+                <a style={{ textDecoration: "none" }} href="/browse">
+                  Browse and Compare
+                </a>{" "}
                 feature to get quick estimates. Transferring from HealthCare.gov
                 or VA DMAS?{" "}
-                <a style={{ textDecoration: 'none' }} href="/claim">Claim your transferred application</a>
+                <a style={{ textDecoration: "none" }} href="/claim">
+                  Claim your transferred application
+                </a>
               </span>
             </div>
           </div>
