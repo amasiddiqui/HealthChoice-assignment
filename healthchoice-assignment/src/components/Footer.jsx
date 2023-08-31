@@ -1,9 +1,7 @@
 import React from "react";
-import { Typography, Container } from "@mui/material";
+import { Typography, Container, Grid, Button } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 import { Twitter, YouTube } from "@mui/icons-material";
-import { Grid, Paper } from "@mui/material";
-import { Button } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 
 const useStyles = makeStyles((theme) => ({
