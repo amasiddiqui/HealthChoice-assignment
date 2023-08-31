@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -11,6 +11,8 @@ import { Grid } from "@mui/material";
 import SearchBar from "./SearchBar";
 import SignInButton from "./SignInButton";
 import { makeStyles } from "@material-ui/core/styles";
+import CustomButton from "./CustomButton";
+import menuData from "../Json/LearnMore";
 
 const ButtonSx = {
   navbarButtonStyles: {
@@ -82,10 +84,10 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" style={{ backgroundColor: "#014ab2" }}>
       <Toolbar>
         <Grid container spacing={2}>
-          <Grid item xs={2} elevation={3} sx={{ margin: "20px" }}>
+          <Grid item xs={2} sx={{ margin: "20px" }}>
             <Typography
               variant="h5"
               style={{ display: "flex", justifyContent: "flex-end" }}
@@ -108,13 +110,12 @@ const Navbar = () => {
                 marginLeft: "5px",
                 marginRight: "0px",
               }}
-              elevation={3}
             >
               English
             </Button>
           </Grid>
           <Grid item xs={1}>
-            <Button
+            {/* <Button
               onClick={handleLearnMoreOpenMenu}
               variant="text"
               style={{
@@ -315,7 +316,14 @@ const Navbar = () => {
                   </MenuItem>
                 </Menu>
               </div>
-            </Menu>
+            </Menu> */}
+            {menuData.map((menuItem, index) => (
+              <CustomButton
+                key={index}
+                title={menuItem.title}
+                submenu={menuItem.submenu}
+              />
+            ))}
           </Grid>
           <Grid item xs={1}>
             <Button
@@ -358,7 +366,6 @@ const Navbar = () => {
           <Grid
             item
             xs={2.5}
-            elevation={3}
             sx={{ margin: "20px", marginLeft: "30px", marginRight: "10px" }}
           >
             <SearchBar />
