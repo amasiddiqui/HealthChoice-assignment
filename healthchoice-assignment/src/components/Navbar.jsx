@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -7,19 +7,37 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { Grid, Paper } from "@mui/material";
+import { Grid } from "@mui/material";
 import SearchBar from "./SearchBar";
+import SignInButton from "./SignInButton";
+import { makeStyles } from "@material-ui/core/styles";
+import CustomButton from "./CustomButton";
+import menuData from "../Json/LearnMore";
+
+const ButtonSx = {
+  navbarButtonStyles: {
+    textAlign: "center",
+    whiteSpace: "nowrap",
+    margin: "20px",
+    color: "white",
+  },
+};
+const useStyles = makeStyles((theme) => ({
+  Stackroot: {
+    "&button:hover": {
+      backgroundColor: theme.palette.primary.main,
+    },
+  },
+}));
 
 const Navbar = () => {
-  const [LearnMore, setLearnMore] = useState("");
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorEr1, setanchorEr1] = useState(null);
   const [anchorRCC, setanchorRCC] = useState(null);
   const [anchorFh, setanchorFh] = useState(null);
   const [anchorCp, setanchorCp] = useState(null);
-  const [GetHelp, setGetHelp] = useState("");
   const [anchorEl2, setAnchorEl2] = useState(null);
-  const [searchText, setSearchText] = useState("");
 
   const handleLearnMoreOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -53,16 +71,8 @@ const Navbar = () => {
     setanchorFh(null);
   };
 
-  const handleCpOpenMenu = (event) => {
-    setanchorCp(event.currentTarget);
-  };
-
   const handleCpCloseMenu = () => {
     setanchorCp(null);
-  };
-
-  const handleGetHelp = (event) => {
-    setGetHelp(event.target.value);
   };
 
   const handleGetHelpOpenMenu = (event) => {
@@ -73,15 +83,11 @@ const Navbar = () => {
     setAnchorEl2(null);
   };
 
-  const handleSearchChange = (event) => {
-    setSearchText(event.target.value);
-  };
-
   return (
-    <AppBar position="static">
+    <AppBar position="static" style={{ backgroundColor: "#014ab2" }}>
       <Toolbar>
         <Grid container spacing={2}>
-          <Grid item xs={2} elevation={3} sx={{ margin: "20px" }}>
+          <Grid item xs={2} sx={{ margin: "20px" }}>
             <Typography
               variant="h5"
               style={{ display: "flex", justifyContent: "flex-end" }}
@@ -100,31 +106,24 @@ const Navbar = () => {
               variant="text"
               color="primary"
               style={{
-                textAlign: "center",
-                whiteSpace: "nowrap",
-                margin: "20px",
-                color: "white",
+                ...ButtonSx.navbarButtonStyles,
                 marginLeft: "5px",
                 marginRight: "0px",
               }}
-              elevation={3}
             >
               English
             </Button>
           </Grid>
           <Grid item xs={1}>
-            <Button
+            {/* <Button
               onClick={handleLearnMoreOpenMenu}
               variant="text"
-              color="primary"
               style={{
-                textAlign: "center",
-                whiteSpace: "nowrap",
-                margin: "20px",
-                color: "white",
+                ...ButtonSx.navbarButtonStyles,
                 marginLeft: "0px",
                 marginRight: "16px",
               }}
+              className={classes.button}
               elevation={3}
             >
               Learn More
@@ -148,12 +147,8 @@ const Navbar = () => {
                   onClick={handleEnrollmentOpenMenu}
                   variant="Text"
                   color="primary"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
                   aria-haspopup="true"
-                  aria-expanded="false"
+                  aria-controls="dropdown-menu"
                   style={{ textAlign: "center" }}
                 >
                   Enrollment
@@ -202,12 +197,9 @@ const Navbar = () => {
                 <Button
                   onClick={handleRCCOpenMenu}
                   variant="Text"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
+                  color="primary"
                   aria-haspopup="true"
-                  aria-expanded="false"
+                  aria-controls="dropdown-menu"
                   style={{ textAlign: "center" }}
                 >
                   Review Change or Cancel
@@ -247,12 +239,9 @@ const Navbar = () => {
                 <Button
                   onClick={handleFhOpenMenu}
                   variant="Text"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
+                  color="primary"
                   aria-haspopup="true"
-                  aria-expanded="false"
+                  aria-controls="dropdown-menu"
                   style={{ textAlign: "center" }}
                 >
                   Financial Help
@@ -289,12 +278,9 @@ const Navbar = () => {
                 <Button
                   onClick={handleRCCOpenMenu}
                   variant="Text"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
+                  color="primary"
                   aria-haspopup="true"
-                  aria-expanded="false"
+                  aria-controls="dropdown-menu"
                   style={{ textAlign: "center" }}
                 >
                   Choosing a Plan
@@ -330,18 +316,21 @@ const Navbar = () => {
                   </MenuItem>
                 </Menu>
               </div>
-            </Menu>
+            </Menu> */}
+            {menuData.map((menuItem, index) => (
+              <CustomButton
+                key={index}
+                title={menuItem.title}
+                submenu={menuItem.submenu}
+              />
+            ))}
           </Grid>
           <Grid item xs={1}>
             <Button
               onClick={handleGetHelpOpenMenu}
               variant="text"
-              color="primary"
               style={{
-                textAlign: "center",
-                whiteSpace: "nowrap",
-                margin: "20px",
-                color: "white",
+                ...ButtonSx.navbarButtonStyles,
                 marginLeft: "20px",
                 marginRight: "16px",
               }}
@@ -377,28 +366,13 @@ const Navbar = () => {
           <Grid
             item
             xs={2.5}
-            elevation={3}
             sx={{ margin: "20px", marginLeft: "30px", marginRight: "10px" }}
           >
             <SearchBar />
           </Grid>
           <Grid item xs={1}>
-            <Button
-              variant="contained"
-              color="primary"
-              style={{
-                backgroundColor: "white",
-                color: "blue",
-                whiteSpace: "nowrap",
-                margin: "20px",
-                marginLeft: "16px",
-                height: "36px",
-              }}
-            >
-              Sign In
-            </Button>
+            <SignInButton />
           </Grid>
-          {/* <Grid item xs={1}></Grid> */}
         </Grid>
       </Toolbar>
     </AppBar>
