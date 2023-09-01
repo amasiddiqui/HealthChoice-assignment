@@ -1,14 +1,12 @@
 import React from "react";
+import { Button } from "@material-ui/core";
 
-
-const ReusableButton = (props) =>{
-    
-   return(
-    <Button variant="outlined" className={classes.button}>
-              Transfer from Healthcare.gov or Medicaid Program
-    </Button>
+const ReusableButton = ({ bVariant, bClassName, title }) => {
+   return (
+      <Button variant={bVariant} className={bClassName}>
+         {title}
+      </Button>
    ); 
 };
 
 export default ReusableButton;
-cd 

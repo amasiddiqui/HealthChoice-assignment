@@ -1,62 +1,9 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Button } from "@material-ui/core";
-import homeImg from "../images/home_img.png";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: "white",
-    padding: theme.spacing(2),
-    height: "100vh",
-  },
-  image: {
-    width: "100%",
-  },
-  middleColumn: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  textContainer: {
-    textAlign: "left",
-    marginBottom: theme.spacing(2),
-  },
-  blueText: {
-    color: "#014ab2",
-  },
-  buttonContainer: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "stretch",
-    marginTop: theme.spacing(2),
-    "& > *": {
-      marginBottom: theme.spacing(1),
-    },
-  },
-  button: {
-    width: "100%",
-    color: "#014ab2",
-    borderColor: "#014ab2",
-    height: "32px",
-    "&:hover": {
-      backgroundColor: "darkblue",
-      color: "white",
-    },
-  },
-  solidButton: {
-    backgroundColor: "#014ab2",
-    color: "white",
-    "&:hover": {
-      backgroundColor: "darkblue",
-    },
-  },
-  paddingTop: {
-    paddingTop: theme.spacing(2), // Add padding top to col-md-5 content
-    paddingBottom: theme.spacing(2), // Add padding bottom to col-md-5 content
-  },
-}));
+import React from "react";
+import { Grid } from "@material-ui/core";
+import homeImg from "../images/home_img.png";
+import ReusableButton from "./ReusableButton";
+import useStyles from "./HomePageStyles"; // Import the styles from the separate file
 
 const HomePage = () => {
   const classes = useStyles();
@@ -101,18 +48,21 @@ const HomePage = () => {
             </div>
           </div>
           <div className={classes.buttonContainer}>
-            <Button
-              variant="contained"
-              className={`${classes.button} ${classes.solidButton}`}
-            >
-              Apply and Enroll
-            </Button>
-            <Button variant="outlined" className={classes.button}>
-              Browse and Compare
-            </Button>
-            <Button variant="outlined" className={classes.button}>
-              Transfer from Healthcare.gov or Medicaid Program
-            </Button>
+            <ReusableButton
+              bVariant="contained"
+              bClassName={`${classes.button} ${classes.solidButton}`}
+              title="Apply and Enroll"
+            />
+            <ReusableButton
+              bVariant="outlined"
+              bClassName={classes.button}
+              title="Browse and Compare"
+            />
+            <ReusableButton
+              bVariant="outlined"
+              bClassName={classes.button}
+              title="Transfer from Healthcare.gov or Medicaid Program"
+            />
           </div>
         </Grid>
         <Grid item md={3}></Grid>
